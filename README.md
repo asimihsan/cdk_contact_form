@@ -1,18 +1,25 @@
-# Welcome to your CDK Java project!
+## Initialize stacks
 
-This is a blank project for Java development with CDK.
+```
+(cd cdk && cdk bootstrap)
+```
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## How to build
 
-It is a [Maven](https://maven.apache.org/) based project, so you can open this project with any Maven compatible Java IDE to build and run tests.
+Without Proguard
 
-## Useful commands
+```
+(cd lambda && ./gradlew build) && \
+(cd cdk && ./gradlew build) && \
+(cd cdk && cdk deploy preprod-CdkContactFormStack)
+```
 
- * `mvn package`     compile and run tests
- * `cdk ls`          list all stacks in the app
- * `cdk synth`       emits the synthesized CloudFormation template
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk docs`        open CDK documentation
+With Proguard
 
-Enjoy!
+```
+(cd lambda && ./gradlew build) && \
+(cd lambda && proguard @proguard.pro) && \
+(cd cdk && ./gradlew build) && \
+(cd cdk && cdk deploy preprod-CdkContactFormStack)
+```
+

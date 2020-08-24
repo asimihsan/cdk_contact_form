@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id "io.freefair.lombok" version "5.1.0"
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform('com.amazonaws:aws-xray-recorder-sdk-bom:2.6.1')
+
+    implementation 'org.apache.commons:commons-text:1.9'
+    implementation 'com.amazonaws:aws-java-sdk-ses:1.11.847'
+    implementation 'com.amazonaws:aws-lambda-java-core:1.2.1'
+    implementation 'com.amazonaws:aws-lambda-java-events:3.2.0'
+    implementation 'com.amazonaws:aws-lambda-java-log4j:1.0.1'
+    implementation 'com.amazonaws:aws-xray-recorder-sdk-aws-sdk-core'
+    implementation 'com.amazonaws:aws-xray-recorder-sdk-aws-sdk-v2'
+    implementation 'com.amazonaws:aws-xray-recorder-sdk-aws-sdk-v2-instrumentor'
+    implementation 'com.amazonaws:aws-xray-recorder-sdk-core'
+    implementation 'com.google.code.findbugs:annotations:3.0.1'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.google.guava:guava:29.0-jre'
+    implementation 'log4j:log4j:1.2.17'
+    implementation 'org.slf4j:slf4j-log4j12:1.7.25'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+shadowJar {
+    archiveBaseName = 'lambda'
+    archiveClassifier = ''
+    archiveVersion = ''
+}
+
+build.dependsOn shadowJar

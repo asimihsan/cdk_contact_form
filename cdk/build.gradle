@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'application'
+    id "io.freefair.lombok" version "5.1.0"
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = 'https://repo.maven.apache.org/maven2'
+    }
+}
+
+application {
+    mainClassName = 'com.myorg.CdkContactFormApp'
+}
+
+dependencies {
+    implementation 'com.google.guava:guava:29.0-jre'
+    implementation 'software.amazon.awscdk:apigateway:1.59.0'
+    implementation 'software.amazon.awscdk:cloudfront:1.59.0'
+    implementation 'software.amazon.awscdk:core:1.59.0'
+    implementation 'software.amazon.awscdk:lambda:1.59.0'
+    implementation 'software.amazon.awscdk:route53-targets:1.59.0'
+    implementation 'software.amazon.awscdk:route53:1.59.0'
+    implementation 'software.amazon.awscdk:secretsmanager:1.59.0'
+
+    testImplementation 'junit:junit:4.12'
+}
+
+group = 'com.myorg'
+version = '0.1'
+sourceCompatibility = '1.11'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
