@@ -23,3 +23,19 @@ With Proguard
 (cd cdk && cdk deploy preprod-CdkContactFormStack)
 ```
 
+## Prod
+
+```
+(cd lambda && ./gradlew build) && \
+(cd cdk && ./gradlew build) && \
+(cd cdk && cdk deploy prod-CdkContactFormStack)
+```
+
+## Both and Proguard
+
+```
+(cd lambda && ./gradlew build) && \
+(cd cdk && ./gradlew build) && \
+(cd lambda && proguard @proguard.pro) && \
+(cd cdk && cdk deploy preprod-CdkContactFormStack prod-CdkContactFormStack)
+```

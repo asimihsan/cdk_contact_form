@@ -52,8 +52,9 @@ public class CdkContactFormApp {
         final String prodStackName = "prod-CdkContactFormStack";
         final String prodDomainName = "contact.ihsan.io";
         final List<String> prodCorsAllowOrigin = Arrays.asList(
-                "https://asim.ihsan.io",
-                "https://contact.ihsan.io"
+                "*"
+//                "https://asim.ihsan.io",
+//                "https://contact.ihsan.io"
         );
         final Stack prodStack = new CdkContactFormStack(app, prodStackName,
                 prodDomainName,

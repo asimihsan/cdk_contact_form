@@ -80,13 +80,13 @@ public class CdkContactFormStack extends Stack {
         //  Lambda.
         // --------------------------------------------------------------------
         final Map<String, String> environment = new HashMap<>();
-        environment.put("CORS_ALLOW_ORIGIN", Joiner.on(", ").join(corsAllowOrigin));
+        environment.put("CORS_ALLOW_ORIGIN", Joiner.on(",").join(corsAllowOrigin));
         environment.put("DESTINATION_EMAIL", destinationEmail.getSecretValue().toString());
         environment.put("RECAPTCHA_V2_SECRET_KEY", recaptchaV2SecretKey.getSecretValue().toString());
         environment.put("REGION", props.getEnv().getRegion());
         final Function lambda = Function.Builder.create(this, "Lambda")
                 .runtime(Runtime.JAVA_11)
-                .code(Code.fromAsset("../lambda/build/libs/lambda.jar"))
+                .code(Code.fromAsset("../lambda/build/libs/lambda_proguard.jar"))
                 .handler("lambda.ContactFormHandler::handleRequest")
                 .memorySize(1024)
                 .timeout(Duration.seconds(10))
